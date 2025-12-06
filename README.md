@@ -30,7 +30,7 @@ Built with passion by Sephiraxx
 
 Poisson logic inspired by real World Cup goal statistics  
 
-Confetti engine custom-written (no external libraries except html2canvas for future exports)
+Confetti engine custom-written (no external libraries except html2canvas for exports)
 
 ### License
 MIT — feel free to fork, share, and make the world simulate 2026.
