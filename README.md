@@ -2,7 +2,7 @@
 
 The most beautiful, accurate, and addictive single-file FIFA World Cup 2026 simulator on the internet.
 
-[Live Demo](https://sephiraxx.github.io/WC2026-Fixture/)
+[Live Demo](https://sephiraxx.github.io/index.html)
 
 ### Features
 - Full 48-team format with official third-place playoff rules (yes, it handles the insane FIFA path logic correctly)
