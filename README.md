@@ -23,7 +23,7 @@ The most beautiful, accurate, and addictive single-file FIFA World Cup 2026 simu
 4. Click "PATH TO GLORY" to see the winner’s full journey
 
 ### Updated for the Official Draw (Dec 5, 2025)
-Groups include real play-off candidates (UEFA Path A/B/C/D + Intercontinental) — perfect for "what-if" simulations until the final spots are decided in March 2026.
+Groups include real play-off candidates (UEFA Path A/B/C/D + Intercontinental) — perfect for "what-if" simulations until the final spots are decided in March 2026. Will also be updated with live results as the matches progress.
 
 ### Credits
 Built with passion by Sephiraxx 
