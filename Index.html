@@ -12,7 +12,6 @@
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
             
-            /* DYNAMIC NEON */
             --neon: #00ff9d; 
             --neon-glow: rgba(0, 255, 157, 0.4);
             --neon-dim: rgba(0, 255, 157, 0.3);
@@ -20,10 +19,12 @@
             --sim-neon: #00d9ff; 
             --pen-neon: #ffaa00; 
             
-            /* MEDALS */
             --gold: #ffd700;
             --bronze: #cd7f32;
             --error: #ff3333;
+            
+            --yellow-card: #ffe600;
+            --red-card: #ff3333;
         }
 
         * { box-sizing: border-box; }
@@ -80,7 +81,7 @@
         .sim-flash { animation: input-flash 0.5s ease-out; }
 
         /* --- LAYOUT --- */
-        .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 25px; max-width: 1600px; margin: 0 auto; }
+        .groups-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; max-width: 1600px; margin: 0 auto; }
         .bracket-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; max-width: 1400px; margin: 20px auto; align-items: flex-start; }
 
         /* --- CARDS --- */
@@ -90,14 +91,42 @@
         .match-list { display: flex; flex-direction: column; gap: 4px; }
         .match-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 0.9rem; }
         .team-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .t-right { text-align: right; }
-        .t-left { text-align: left; }
+        .t-right { text-align: right; margin-right: 5px; }
+        .t-left { text-align: left; margin-left: 5px; }
 
-        .inputs-wrapper { display: flex; gap: 5px; padding: 0 10px; justify-content: center; min-width: 90px; }
+        .inputs-wrapper { display: flex; gap: 3px; padding: 0 2px; justify-content: center; align-items: center; }
 
-        input[type="number"] { width: 38px; background: #111; border: 1px solid #444; color: #fff; text-align: center; font-family: inherit; font-weight: bold; font-size: 1rem; padding: 4px; border-radius: 3px; -moz-appearance: textfield; }
+        /* --- INPUTS & SPINNER REMOVAL --- */
+        input[type="number"] { 
+            width: 32px; 
+            background: #111; 
+            border: 1px solid #444; 
+            color: #fff; 
+            text-align: center; 
+            font-family: inherit; 
+            font-weight: bold; 
+            font-size: 0.95rem; 
+            padding: 4px; 
+            border-radius: 3px; 
+            -moz-appearance: textfield; /* Firefox */
+        }
+        
+        /* Hide Spinners */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         input[type="number"]:focus { outline: none; border-color: var(--neon); box-shadow: 0 0 8px var(--neon-dim); }
 
+        /* Fair Play Inputs */
+        .fp-inp { width: 22px !important; font-size: 0.75rem !important; padding: 2px !important; border-style: dashed !important; opacity: 0.7; transition: opacity 0.2s; }
+        .fp-inp:focus, .fp-inp:not(:placeholder-shown) { opacity: 1; border-style: solid !important; }
+        .fp-yellow { border-color: var(--yellow-card) !important; color: var(--yellow-card) !important; }
+        .fp-red { border-color: var(--red-card) !important; color: var(--red-card) !important; }
+
+        /* --- TABLES --- */
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-bottom: 10px; color: #ccc; }
         th { text-align: center; color: #777; font-weight: normal; border-bottom: 1px solid #333; padding: 4px; }
         td { text-align: center; padding: 4px; border-bottom: 1px solid #222; }
@@ -117,38 +146,27 @@
         .inp-pen { border-color: #530; color: var(--pen-neon); width: 32px; font-size: 0.9rem; }
         .inp-pen.pen-error { border-color: var(--error); color: var(--error); box-shadow: 0 0 5px var(--error); }
 
-        /* --- SPECIAL CARDS --- */
         .bronze-card { border-left-color: var(--bronze); border-color: rgba(205, 127, 50, 0.3); }
         .gold-card { border-left-color: var(--gold); border-color: rgba(255, 215, 0, 0.4); box-shadow: 0 0 30px rgba(255,215,0,0.1); transform: scale(1.05); margin: 10px; z-index: 10; }
         .gold-card .m-header { color: var(--gold); font-weight: bold; }
         .gold-card .team-name { font-weight: bold; font-size: 1.2rem; }
 
-        /* --- CHAMPION MODAL --- */
         #champion-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; display: none; flex-direction: column; align-items: center; justify-content: center; }
         #champ-name { font-size: 4rem; color: var(--gold); text-shadow: 0 0 40px var(--gold); margin: 20px 0; text-align: center; }
         #confetti-canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999; }
         
-        #path-panel { 
-            background: rgba(255,255,255,0.1); 
-            border: 1px solid var(--neon); 
-            padding: 15px; 
-            margin-top: 20px; 
-            border-radius: 5px; 
-            max-width: 900px; 
-            width: 90vw; /* Mobile fix */
-            max-height: 200px; 
-            overflow-y: auto; 
-            color: #eee; 
-        }
+        #path-panel { background: rgba(255,255,255,0.1); border: 1px solid var(--neon); padding: 15px; margin-top: 20px; border-radius: 5px; max-width: 900px; width: 90vw; max-height: 200px; overflow-y: auto; color: #eee; }
 
         .stage-section { display: none; padding-bottom: 40px; }
         .actions-row { width: 100%; display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
 
         @media (max-width: 600px) {
-            input[type="number"] { width: 30px; font-size: 0.9rem; }
+            .match-item { font-size: 0.8rem; }
+            input[type="number"] { width: 28px; font-size: 0.9rem; }
+            .fp-inp { width: 18px !important; padding: 0 !important; }
             .match-card { padding: 12px; max-width: 100%; }
             .team-name { font-size: 0.85rem; }
-            .inputs-wrapper { gap: 3px; min-width: 70px; }
+            .inputs-wrapper { min-width: 60px; }
             .cyber-btn { padding: 8px 16px; font-size: 0.75rem; letter-spacing: 0.5px; }
             h1 { font-size: 1.6rem; letter-spacing: 2px; margin-bottom: 10px; }
             h2 { font-size: 1.2rem; margin-top: 30px; }
@@ -169,7 +187,7 @@
     </div>
     <canvas id="confetti-canvas"></canvas>
 
-    <h1>// FIFA FIXTURE 2026 //</h1>
+    <h1>// FIFA SYSTEM 2026 //</h1>
     
     <div class="top-controls">
         <button onclick="randomizeGroups()" class="cyber-btn btn-sim">🎲 SIMULATE GROUPS</button>
@@ -228,7 +246,7 @@
     </div>
 
 <script>
-    /* WC 2026 TEAMS */
+    /* WC 2026 SIMULATOR */
 
     const groupsData = {
         "A": ["Mexico", "South Africa", "Korea Rep", "European Play-Off D"],
@@ -275,13 +293,13 @@
             if(sec.style.display === 'block') visibleSections.push(sec.id);
         });
 
-        localStorage.setItem('wc26_v14_save', JSON.stringify({
+        localStorage.setItem('wc26_v16_save', JSON.stringify({
             inputs: state, visible: visibleSections
         }));
     }
 
     function loadState() {
-        const saved = localStorage.getItem('wc26_v14_save');
+        const saved = localStorage.getItem('wc26_v16_save');
         if(!saved) return;
         try {
             const data = JSON.parse(saved);
@@ -297,7 +315,6 @@
             if(data.visible.includes('sf-section')) initKnockoutRound('sf', true);
             if(data.visible.includes('final-section')) initKnockoutRound('final', true);
 
-            
             if(data.visible.includes('ro32-section')) highlightQualifiedThirds();
 
             setTimeout(() => {
@@ -319,15 +336,15 @@
 
     function resetTournament() {
         if(confirm("⚠️ Reset tournament data?")) {
-            localStorage.removeItem('wc26_v14_save');
+            localStorage.removeItem('wc26_v16_save');
             location.reload();
         }
     }
 
-    
+    // --- NEON & EXPORT ---
     function updateNeonBasedOnScores() {
         const total = [...document.querySelectorAll('input[id^="m"], input[id^="A"], input[id^="B"]')]
-            .filter(i => !i.id.includes('pen'))
+            .filter(i => !i.id.includes('pen') && !i.className.includes('fp-inp'))
             .reduce((s,i) => s + (parseInt(i.value) || 0), 0);
         const hue = (total * 5) % 360; 
         document.documentElement.style.setProperty('--neon', `hsl(${hue}, 100%, 60%)`);
@@ -366,7 +383,7 @@
         return k - 1;
     }
 
-    // --- GROUPS ---
+    // --- GROUPS WITH FAIR PLAY ---
     function renderGroupStage() {
         const container = document.getElementById('groups-app');
         container.innerHTML = '';
@@ -376,7 +393,7 @@
             card.innerHTML = `
                 <div class="group-title"><span>GROUP ${gName}</span></div>
                 <table id="t-${gName}">
-                    <thead><tr><th>Team</th><th>P</th><th>GD</th><th>Pts</th></tr></thead>
+                    <thead><tr><th>Team</th><th>P</th><th>GD</th><th>FP</th><th>Pts</th></tr></thead>
                     <tbody></tbody>
                 </table>
                 <div class="match-list"></div>
@@ -390,8 +407,14 @@
                     row.innerHTML = `
                         <span class="team-name t-right">${teams[i]}</span>
                         <div class="inputs-wrapper">
+                            <input type="number" class="fp-inp fp-yellow" id="${mId}-Ay" placeholder="Y" oninput="handleGroupInput('${gName}', this)">
+                            <input type="number" class="fp-inp fp-red" id="${mId}-Ar" placeholder="R" oninput="handleGroupInput('${gName}', this)">
+                            
                             <input type="number" id="${mId}-A" min="0" max="20" oninput="handleGroupInput('${gName}', this)">
                             <input type="number" id="${mId}-B" min="0" max="20" oninput="handleGroupInput('${gName}', this)">
+                            
+                            <input type="number" class="fp-inp fp-yellow" id="${mId}-By" placeholder="Y" oninput="handleGroupInput('${gName}', this)">
+                            <input type="number" class="fp-inp fp-red" id="${mId}-Br" placeholder="R" oninput="handleGroupInput('${gName}', this)">
                         </div>
                         <span class="team-name t-left">${teams[j]}</span>
                     `;
@@ -439,12 +462,22 @@
 
     function updateTable(gName) {
         const teams = groupsData[gName];
-        let stats = teams.map(t => ({ name: t, p:0, gf:0, ga:0, gd:0, pts:0, group: gName }));
+        let stats = teams.map(t => ({ name: t, p:0, gf:0, ga:0, gd:0, pts:0, fp:0, group: gName }));
+        
         for (let i = 0; i < teams.length; i++) {
             for (let j = i + 1; j < teams.length; j++) {
                 const mId = `${gName}-${i}-${j}`;
                 const iA = document.getElementById(`${mId}-A`);
                 const iB = document.getElementById(`${mId}-B`);
+                
+                const yA = parseInt(document.getElementById(`${mId}-Ay`).value || 0);
+                const rA = parseInt(document.getElementById(`${mId}-Ar`).value || 0);
+                const yB = parseInt(document.getElementById(`${mId}-By`).value || 0);
+                const rB = parseInt(document.getElementById(`${mId}-Br`).value || 0);
+                
+                stats[i].fp -= (yA * 1 + rA * 3);
+                stats[j].fp -= (yB * 1 + rB * 3);
+
                 if(iA.value !== '' && iB.value !== '') {
                     const sA = parseInt(iA.value); const sB = parseInt(iB.value);
                     stats[i].p++; stats[i].gf+=sA; stats[i].ga+=sB;
@@ -454,11 +487,16 @@
             }
         }
         stats.forEach(s => s.gd = s.gf - s.ga);
+        
         stats.sort((a,b) => {
             if(b.pts !== a.pts) return b.pts - a.pts;
             if(b.gd !== a.gd) return b.gd - a.gd;
             if(b.gf !== a.gf) return b.gf - a.gf;
-            return getH2HWinner(gName, b.name, a.name); 
+            
+            const h2h = getH2HWinner(gName, b.name, a.name);
+            if(h2h !== 0) return h2h;
+            
+            return b.fp - a.fp;
         });
         
         globalStandings[gName] = stats;
@@ -466,7 +504,14 @@
         tbody.innerHTML = '';
         stats.forEach((s, idx) => {
             let cls = idx < 2 ? `q-${idx+1}` : (idx===2 ? 'q-3' : '');
-            tbody.innerHTML += `<tr class="${cls}" id="row-${cleanId(s.name)}"><td>${s.name}</td><td>${s.p}</td><td>${s.gd}</td><td><strong>${s.pts}</strong></td></tr>`;
+            tbody.innerHTML += `
+                <tr class="${cls}" id="row-${cleanId(s.name)}">
+                    <td>${s.name}</td>
+                    <td>${s.p}</td>
+                    <td>${s.gd}</td>
+                    <td style="color:${s.fp < 0 ? '#ffcc00' : '#666'}">${s.fp}</td>
+                    <td><strong>${s.pts}</strong></td>
+                </tr>`;
         });
     }
 
@@ -477,7 +522,7 @@
             let invalidEl = null;
 
             if(roundKey === 'ro32') {
-                const inputs = document.querySelectorAll('#groups-app input');
+                const inputs = document.querySelectorAll('#groups-app input:not(.fp-inp)');
                 for(let inp of inputs) { if(inp.value === '') { valid = false; invalidEl = inp; break; } }
             } else {
                 const map = {'r16':'ro32','qf':'r16','sf':'qf','final':'sf'};
@@ -530,7 +575,7 @@
     function highlightQualifiedThirds() {
         let all3rds = [];
         Object.keys(globalStandings).forEach(g => { if(globalStandings[g][2]) all3rds.push(globalStandings[g][2]); });
-        all3rds.sort((a,b) => (b.pts - a.pts) || (b.gd - a.gd) || (b.gf - a.gf));
+        all3rds.sort((a,b) => (b.pts - a.pts) || (b.gd - a.gd) || (b.gf - a.gf) || (b.fp - a.fp));
         const top8 = all3rds.slice(0, 8);
         document.querySelectorAll('.q-best-3').forEach(el => el.classList.remove('q-best-3'));
         top8.forEach(t => {
@@ -650,7 +695,6 @@
             }
         } else {
             div.style.display = 'none';
-            
             pA.value = ''; pB.value = '';
         }
     }
@@ -675,7 +719,7 @@
 
     // --- SIMULATION ---
     function randomizeGroups() {
-        const inputs = document.querySelectorAll('#groups-app input');
+        const inputs = document.querySelectorAll('#groups-app input:not(.fp-inp)');
         inputs.forEach(i => {
             i.value = getPoissonScore();
             i.classList.add('sim-flash');
