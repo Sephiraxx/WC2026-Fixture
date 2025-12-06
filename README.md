@@ -27,7 +27,9 @@ Groups include real play-off candidates (UEFA Path A/B/C/D + Intercontinental) â
 
 ### Credits
 Built with passion by Sephiraxx 
+
 Poisson logic inspired by real World Cup goal statistics  
+
 Confetti engine custom-written (no external libraries except html2canvas for future exports)
 
 ### License
