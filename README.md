@@ -8,6 +8,7 @@ The most beautiful, accurate, and addictive single-file FIFA World Cup 2026 simu
 
 ### Features
 - Full 48-team format with official third-place playoff rules (yes, it handles the insane FIFA path logic correctly)
+- Simulation based on FIFA ranking positions.
 - Real Poisson-distributed scores (feels like actual football)
 - Head-to-head tiebreakers (FIFA-official)
 - Live penalty validation + auto-clear
