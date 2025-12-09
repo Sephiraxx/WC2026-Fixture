@@ -2,9 +2,9 @@
 
 The most beautiful, accurate, and addictive single-file FIFA World Cup 2026 simulator on the internet.
 
-[Live Demo for fixture and sim](https://http://fixture2026.com/index.html)
+[Live Demo for fixture and sim](https://fixture2026.com/index.html)
 
-[Live demo for updated played matches](https://http://fixture2026.com/live.html) (I will update it with the current results, but you can still make scenarios for RO32 qualifying.) 
+[Live demo for updated played matches](https://fixture2026.com/live.html) (I will update it with the current results, but you can still make scenarios for RO32 qualifying.) 
 
 ### Features
 - Full 48-team format with official third-place playoff rules (yes, it handles the insane FIFA path logic correctly)
