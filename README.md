@@ -1,4 +1,4 @@
-# WC 2026 // FIXTURE AND SIMULATION 🏆
+# WC 2026 // FIXTURE AND SIMULATION 
 
 The most beautiful, accurate, and addictive single-file FIFA World Cup 2026 simulator on the internet.
 
